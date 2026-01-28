@@ -1,145 +1,61 @@
-# Payflo.dev - Astro 5.7 Implementation
+# 📘 Manual de Uso - Plataforma Web Xmartika
 
-This is a modern reimplementation of the [salsa.dev](https://www.salsa.dev/) website using Astro 5.7, following the latest best practices.
+**Proyecto:** Sitio Web Corporativo & Panel Administrativo
+**Versión:** 1.0 (Lanzamiento)
+**Desarrollado por:** Vantta Code
 
-## Features
+---
 
-- Built with Astro 5.7
-- Responsive design using Tailwind CSS
-- Smooth & subtle micro-interactions
-- Optimized images with Astro's built-in image optimization
-- Modern SEO practices
-- Accessibility-friendly components
-- Fast page transitions with View Transitions API
+## 1. 🚀 Bienvenido a su nueva web
+Su nueva plataforma ha sido desarrollada con tecnología de alta velocidad para asegurar que sus clientes carguen la página al instante. Está optimizada para Google (SEO) y diseñada para convertir visitas en citas de diagnóstico fiscal.
 
-[<img width="609" height="500" alt="home-page" src="https://github.com/user-attachments/assets/1e311553-3314-4c40-96f6-50daa5cf36f0" />](https://payflo.corytrimm.com)
+**Enlace oficial:** [xmartika.com.do](https://xmartika.com.do)
 
-## Project Structure
+---
 
-```
-/
-├── public/               # Static assets like images and favicons
-├── src/
-│   ├── assets/           # Images processed by Astro
-│   ├── components/       # Reusable UI components
-│   ├── layouts/          # Page layouts
-│   ├── pages/            # Page components and routes
-│   ├── scripts/          # Client-side JavaScript
-│   └── styles/           # Global CSS and utility styles
-├── .gitignore
-├── astro.config.mjs      # Astro configuration
-├── package.json          # Project dependencies
-├── tailwind.config.mjs   # Tailwind CSS configuration
-└── tsconfig.json         # TypeScript configuration
-```
+## 2. 🔐 Acceso al Panel de Control (Admin)
 
-## Getting Started
+Usted tiene control total sobre los datos de contacto de la web. No necesita un programador para cambiar su número de teléfono o redes sociales.
 
-### Prerequisites
+* **Dirección de acceso:** `xmartika.com.do/login`
+* **Usuario:** `admin`
+* **Contraseña:** *(Entregada por canal seguro)*
 
-- Node.js (v18.14.1 or higher)
-- npm or yarn or pnpm
+### ¿Qué puede hacer en este panel?
 
-### Installation
+#### 📊 1. Monitor de Visitas
+En la pantalla principal ("Resumen General"), verá un contador en tiempo real de cuántas personas han entrado a su página web.
 
-1. Clone the repository:
+#### ⚙️ 2. Configuración de Contacto
+En la pestaña "Configuración Web" puede editar:
+* **Número de WhatsApp:** Al cambiarlo aquí, se actualiza automáticamente en el botón principal, en los botones flotantes y en el pie de página.
+* **Facebook e Instagram:** Pegue los enlaces de sus perfiles.
+    * *Nota:* Si deja estos campos vacíos, los iconos desaparecerán automáticamente de la web para mantener una imagen profesional.
 
-```bash
-git clone https://github.com/ctrimm/astro-payroll-solution-theme.git
-cd astro-payroll-solution-theme
-```
+---
 
-2. Install dependencies:
+## 3. 💎 Módulos Premium (Escalabilidad)
 
-```bash
-npm install
-# or
-yarn install
-# or
-pnpm install
-```
+Su sistema está preparado para crecer. En el menú lateral del panel verá opciones avanzadas marcadas con un candado (🔒).
 
-3. Run the development server:
+Estas son funciones que su sistema **ya soporta** y pueden activarse bajo demanda:
+* **🛒 Productos & Stock:** Para vender servicios o guías fiscales directamente.
+* **💳 Pasarela de Pagos:** Cobros automáticos con tarjeta.
+* **🤖 Agente IA:** Un chat inteligente que responde preguntas de la DGII las 24hs.
+* **📧 Marketing Email:** Campañas automáticas a sus leads.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+*Si desea activar alguno de estos módulos, haga clic en ellos o contacte a soporte.*
 
-4. Open your browser and navigate to `http://localhost:4321`
+---
 
-## Building for Production
+## 4. 📞 Soporte Técnico
 
-To build the site for production, run:
+Esta web cuenta con garantía de funcionamiento por parte de **Vantta Code**.
 
-```bash
-npm run build
-# or
-yarn build
-# or
-pnpm build
-```
+Si detecta algún inconveniente o desea expandir las capacidades de su negocio digital:
 
-The build output will be in the `dist/` directory.
+* **Web:** [vanttacode.cl](https://vanttacode.cl)
+* **Email:** contacto@vanttacode.cl
 
-To preview the production build locally:
-
-```bash
-npm run preview
-# or
-yarn preview
-# or
-pnpm preview
-```
-
-## Customization
-
-### Styling
-
-The project uses Tailwind CSS for styling. You can customize the styles by modifying:
-
-- `tailwind.config.mjs` - For theme configuration
-- `src/styles/global.css` - For global styles and custom utility classes
-
-### Content
-
-Update the content of the site by modifying the components in the `src/components/` directory and the pages in the `src/pages/` directory.
-
-### Images
-
-- Place static images that don't need processing in the `public/` directory
-- Place images that need optimization in the `src/assets/` directory
-
-## Adding New Pages
-
-To add a new page, create a new `.astro` file in the `src/pages/` directory. The file path will determine the route.
-
-For example:
-- `src/pages/blog.astro` will be accessible at `/blog`
-- `src/pages/blog/[slug].astro` will create dynamic routes for blog posts
-
-## Animations
-
-The site uses a combination of:
-
-1. CSS animations defined in `src/styles/global.css`
-2. Intersection Observer for triggering animations on scroll, implemented in `src/scripts/animations.js`
-
-## Deployment
-
-This Astro site can be deployed to any static hosting service like:
-
-- Netlify
-- Vercel
-- GitHub Pages
-- Cloudflare Pages
-- AWS S3 + CloudFront
-
-Follow the respective platform's documentation for deployment instructions.
-
-## License
-
-This project is open source and available under the [MIT License](LICENSE).
+---
+*Gracias por confiar en Vantta Code para digitalizar su negocio.*

@@ -2,17 +2,34 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Page Not Found - Payflo">
-  <section class="py-20 md:py-32 flex items-center min-h-[60vh]">
-    <div class="container-custom text-center">
-      <h1 class="text-4xl md:text-6xl font-bold mb-6">404</h1>
-      <h2 class="text-2xl md:text-3xl font-bold mb-6">Page Not Found</h2>
-      <p class="text-xl text-gray-600 mb-10 max-w-xl mx-auto">
-        The page you're looking for doesn't exist or has been moved.
+<Layout title="Página no encontrada | Xmartika">
+  <section class="py-20 md:py-32 flex flex-col items-center justify-center min-h-[80vh] bg-slate-950 text-center relative overflow-hidden">
+    
+    {/* Efecto de fondo (Glow) */}
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-teal-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+    <div class="container mx-auto px-4 relative z-10">
+      
+      {/* El 404 gigante */}
+      <h1 class="text-8xl md:text-9xl font-extrabold mb-2 text-transparent bg-clip-text bg-gradient-to-b from-teal-400 to-slate-900/50">
+        404
+      </h1>
+      
+      <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white">
+        Página no encontrada
+      </h2>
+      
+      <p class="text-xl text-slate-400 mb-10 max-w-xl mx-auto leading-relaxed">
+        Parece que te has desviado. Esta página no existe, pero tus impuestos siguen bajo control.
       </p>
-      <a href="/" class="btn btn-primary">
-        Back to Home
+      
+      <a 
+        href="/" 
+        class="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-slate-900 bg-teal-500 rounded-xl hover:bg-teal-400 transition-all shadow-[0_0_20px_rgba(45,212,191,0.2)] hover:shadow-[0_0_30px_rgba(45,212,191,0.4)] transform hover:-translate-y-1"
+      >
+        Volver al Inicio
       </a>
+
     </div>
   </section>
 </Layout>
