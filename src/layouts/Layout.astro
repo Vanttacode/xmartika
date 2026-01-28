@@ -1,9 +1,7 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
-import { getImage } from 'astro:assets';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
 import '../styles/global.css';
+// Importamos el ID del cliente para el script de trackeo
+import { CLIENT_ID } from '../lib/constants';
 
 interface Props {
   title: string;
@@ -12,83 +10,77 @@ interface Props {
 
 const { 
   title, 
-  description = "Payflo makes it fast and easy for SaaS platforms to build and embed payroll using our infrastructure, APIs and UI components."
+  description = "Ingeniería Contable y Business Intelligence para Startups en República Dominicana. Automatiza tu 606, 607 e impuestos con Xmartika."
 } = Astro.props;
-
-// Preload critical assets
-const faviconImg = await getImage({src: '/favicon.png', width: 32, height: 32});
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/png" href={faviconImg.src} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    
     <title>{title}</title>
-    <ViewTransitions />
     
-    <!-- Preload critical resources -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    
-    <!-- Structured data -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Payflo",
-        "url": "https://payflo.dev",
-        "logo": "https://payflo.dev/logo.png",
-        "sameAs": [
-          "https://twitter.com/payflo_dev",
-          "https://www.linkedin.com/company/payflo-dev"
-        ]
-      }
-    </script>
-    
-    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://xmartika.com.do/" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={Astro.url} />
-    <meta property="og:image" content="https://payflo.dev/og-image.jpg" />
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@payflo_dev" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content="https://payflo.dev/twitter-image.jpg" />
+    <meta property="og:image" content="/og-image.jpg" />
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://xmartika.com.do/" />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content="/og-image.jpg" />
   </head>
-  <body class="min-h-screen flex flex-col">
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-    <Header />
-    <main id="main-content" class="flex-grow">
-      <slot />
-    </main>
-    <Footer />
-    
-    <!-- Intersection Observer for animations on scroll -->
-    <script>
-      document.addEventListener('astro:page-load', () => {
-        const animatedElements = document.querySelectorAll('.animate-on-scroll');
-        
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('animated');
-              observer.unobserve(entry.target);
+  
+  <body class="min-h-screen flex flex-col font-sans bg-white text-slate-900 selection:bg-teal-100 selection:text-teal-900">
+    <slot />
+
+    <script define:vars={{ CLIENT_ID }}>
+      import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+      const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
+      const supabaseKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
+
+      if (supabaseUrl && supabaseKey) {
+        const supabase = createClient(supabaseUrl, supabaseKey);
+
+        async function trackVisit() {
+          // Evitamos contar duplicados por sesión
+          if (sessionStorage.getItem('visit_counted')) return;
+
+          try {
+            // 1. Obtener valor actual SOLO de este cliente
+            const { data: currentData } = await supabase
+              .from('site_config')
+              .select('value')
+              .eq('client_id', CLIENT_ID)
+              .eq('key', 'page_views')
+              .single();
+
+            if (currentData) {
+              const newCount = parseInt(currentData.value) + 1;
+              
+              // 2. Actualizar valor
+              await supabase
+                .from('site_config')
+                .update({ value: newCount.toString() })
+                .eq('client_id', CLIENT_ID)
+                .eq('key', 'page_views');
+                
+              sessionStorage.setItem('visit_counted', 'true');
             }
-          });
-        }, { threshold: 0.1 });
-        
-        animatedElements.forEach(element => {
-          observer.observe(element);
-        });
-      });
+          } catch (err) {
+            console.error('Error tracking visit:', err);
+          }
+        }
+        trackVisit();
+      }
     </script>
   </body>
 </html>

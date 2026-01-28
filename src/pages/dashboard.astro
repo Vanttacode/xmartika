@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { AdminDashboard } from '../components/react/admin/AdminDashboard';
+---
+
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Panel Admin | Xmartika</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body class="bg-slate-950 m-0 p-0">
+  
+  <AdminDashboard client:only="react" />
+
+  <script>
+    const isLoggedIn = localStorage.getItem('isAdminLoggedIn');
+    if (!isLoggedIn) {
+      window.location.href = '/login';
+    }
+  </script>
+
+</body>
+</html>
